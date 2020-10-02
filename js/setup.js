@@ -47,7 +47,7 @@
   userDialog.querySelector(`.setup-similar`).classList.remove(`hidden`);
 
   const onPopupEscPress = function (evt) {
-    if (evt.key === `Escape`) {
+    if ((userNameInput !== document.activeElement) && (evt.key === `Escape`)) {
       evt.preventDefault();
       closePopup();
     }
@@ -55,13 +55,7 @@
 
   const openPopup = function () {
     userDialog.classList.remove(`hidden`);
-
-    document.addEventListener(`keydown`, function (evt) {
-      if (evt.key === `Escape`) {
-        evt.preventDefault();
-        userDialog.classList.add(`hidden`);
-      }
-    });
+    document.addEventListener(`keydown`, onPopupEscPress);
   };
 
   const closePopup = function () {
